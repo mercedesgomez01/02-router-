@@ -8684,51 +8684,51 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = __webpack_require__(74);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Albums = function Albums(props) {
 
   var albums = props.albums;
   var selectAlbum = props.selectAlbum;
-
+  console.log(albums);
   return _react2.default.createElement(
-    "div",
+    'div',
     null,
     _react2.default.createElement(
-      "h3",
+      'h3',
       null,
-      "Albums"
+      'Albums'
     ),
     _react2.default.createElement(
-      "div",
-      { className: "row" },
+      'div',
+      { className: 'row' },
       albums.map(function (album) {
         return _react2.default.createElement(
-          "div",
-          { className: "col-xs-4", key: album.id },
+          'div',
+          { className: 'col-xs-4', key: album.id },
           _react2.default.createElement(
-            "a",
-            { className: "thumbnail", href: "#", onClick: function onClick() {
-                return selectAlbum(album.id);
-              } },
-            _react2.default.createElement("img", { src: album.imageUrl }),
+            _reactRouter.Link,
+            { to: '/albums/' + album.id, className: 'thumbnail' },
+            _react2.default.createElement('img', { src: album.imageUrl }),
             _react2.default.createElement(
-              "div",
-              { className: "caption" },
+              'div',
+              { className: 'caption' },
               _react2.default.createElement(
-                "h5",
+                'h5',
                 null,
                 _react2.default.createElement(
-                  "span",
+                  'span',
                   null,
                   album.name
                 )
               ),
               _react2.default.createElement(
-                "small",
+                'small',
                 null,
                 album.songs.length,
-                " songs"
+                ' songs'
               )
             )
           )
@@ -14010,6 +14010,8 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = __webpack_require__(74);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Sidebar = function Sidebar(props) {
@@ -14017,19 +14019,19 @@ var Sidebar = function Sidebar(props) {
   var deselectAlbum = props.deselectAlbum;
 
   return _react2.default.createElement(
-    "sidebar",
+    'sidebar',
     null,
-    _react2.default.createElement("img", { src: "juke.svg", className: "logo" }),
+    _react2.default.createElement('img', { src: 'juke.svg', className: 'logo' }),
     _react2.default.createElement(
-      "section",
+      'section',
       null,
       _react2.default.createElement(
-        "h4",
-        { className: "menu-item active" },
+        'h4',
+        { className: 'menu-item active' },
         _react2.default.createElement(
-          "a",
-          { href: "#", onClick: deselectAlbum },
-          "ALBUMS"
+          _reactRouter.Link,
+          { to: '/albums' },
+          'ALBUMS'
         )
       )
     )

@@ -8,9 +8,6 @@ class  Album extends Component {
     super(props) 
   }
 
-
-  
-
   componentDidMount () {
     const selectAlbum = this.props.selectAlbum;
     selectAlbum(this.props.params.albumId)
