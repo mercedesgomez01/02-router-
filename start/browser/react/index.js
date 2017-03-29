@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import AppContainer from './containers/AppContainer';
 import Albums from './components/Albums.js';
 import Album from './components/Album';
+import Artists from './components/Artists.js';
 import Sidebar from './components/Sidebar';
 import Player from './components/Player';
 //To start using react-router, all we need to do is import the components we
@@ -16,6 +17,7 @@ ReactDOM.render(
       <IndexRedirect to = "/albums" />
       <Route path="/albums" component={Albums} />
       <Route path="albums/:albumId" component={Album} />
+      <Route path="/artists" component={Artists} />
     </Route>
   </Router>,
   document.getElementById('app')
