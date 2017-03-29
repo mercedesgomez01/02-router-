@@ -20,6 +20,7 @@ class Artist extends Component {
 		const isPlaying = this.props.isPlaying;
 		const toggleOne = this.props.toggleOne;
 		const children = this.props.children;
+		
 		const propsToPassToChildren = {
 			albums: artist.albums,
 			songs:artist.songs,
@@ -27,6 +28,7 @@ class Artist extends Component {
 			isPlaying:isPlaying,
 			toggleOne:toggleOne,
 		}
+		
 		return(
 			<div>
 			  <h3>{artist.name}</h3>
