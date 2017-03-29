@@ -8,6 +8,7 @@ import AUDIO from '../audio';
 import Albums from '../components/Albums.js';
 import Album from '../components/Album';
 import Artists from '../components/Artists.js';
+import Artist from '../components/Artist.js';
 import Sidebar from '../components/Sidebar';
 import Player from '../components/Player';
 

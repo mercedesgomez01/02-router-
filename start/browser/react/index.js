@@ -4,6 +4,7 @@ import AppContainer from './containers/AppContainer';
 import Albums from './components/Albums.js';
 import Album from './components/Album';
 import Artists from './components/Artists.js';
+import Artist from './components/Artist.js';
 import Sidebar from './components/Sidebar';
 import Player from './components/Player';
 //To start using react-router, all we need to do is import the components we
@@ -16,8 +17,9 @@ ReactDOM.render(
     <Route path="/" component={AppContainer}>
       <IndexRedirect to = "/albums" />
       <Route path="/albums" component={Albums} />
-      <Route path="albums/:albumId" component={Album} />
+      <Route path="/albums/:albumId" component={Album} />
       <Route path="/artists" component={Artists} />
+      <Route path="/artists/:artistId" component={Artist} />
     </Route>
   </Router>,
   document.getElementById('app')
