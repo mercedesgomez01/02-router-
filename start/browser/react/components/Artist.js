@@ -10,7 +10,6 @@ class Artist extends Component {
 	}
 
 	 componentDidMount () {
-		 console.log(this.props)
 		const selectArtist = this.props.selectArtist;
 		selectArtist(this.props.params.artistId)
 	}
@@ -20,22 +19,22 @@ class Artist extends Component {
 		const currentSong = this.props.currentSong;
 		const isPlaying = this.props.isPlaying;
 		const toggleOne = this.props.toggleOne;
+		const children = this.props.children;
+		const propsToPassToChildren = {
+			albums: artist.albums,
+			songs:artist.songs,
+			currentSong:currentSong,
+			isPlaying:isPlaying,
+			toggleOne:toggleOne,
+		}
 		return(
 			<div>
 			  <h3>{artist.name}</h3>
-
-			  <h4>ALBUMS</h4>
-			  	<Albums 
-				  albums={artist.albums}
-				  />
-
-			  <h4>SONGS</h4>
-			  <Songs 
-				songs={artist.songs}
-				currentSong={currentSong}
-				isPlaying={isPlaying}
-				toggleOne={toggleOne}
-			  />
+			  <ul className="nav nav-tabs">
+			    <li><Link to={`/artists/${artist.id}/albums`}>ALBUMS</Link></li>
+			    <li><Link to={`/artists/${artist.id}/songs`}>SONGS</Link></li>
+			  </ul>
+			{ children && React.cloneElement(children, propsToPassToChildren) }  
 			</div>
 			)
 	}
