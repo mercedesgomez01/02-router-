@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Router, Route, hashHistory } from 'react-router';
 import axios from 'axios';
+const Promise = require('Bluebird');
 
 import initialState from '../initialState';
 import AUDIO from '../audio';
@@ -12,7 +13,7 @@ import Artist from '../components/Artist.js';
 import Sidebar from '../components/Sidebar';
 import Player from '../components/Player';
 
-import { convertAlbum, convertAlbums, skip } from '../utils';
+import { convertAlbum, convertAlbums, convertArtist, skip } from '../utils';
 
 export default class AppContainer extends Component {
 
@@ -26,6 +27,7 @@ export default class AppContainer extends Component {
     this.prev = this.prev.bind(this);
     this.selectAlbum = this.selectAlbum.bind(this);
     this.deselectAlbum = this.deselectAlbum.bind(this);
+    this.selectArtist = this.selectArtist.bind(this);
   }
 
   componentDidMount () {
@@ -105,6 +107,19 @@ export default class AppContainer extends Component {
       }));
   }
 
+   selectArtist (artistId) {
+    let artist = axios.get(`/api/artists/${artistId}`).then(res => res.data)
+    let albums = axios.get(`/api/artists/${artistId}/albums`).then(res => res.data)
+    let songs = axios.get(`/api/artists/${artistId}/songs`).then(res => res.data)
+    
+    Promise.all([artist, albums, songs])
+      .spread((artist, albums, songs) => {
+        this.setState({
+          selectedArtist: convertArtist(artist, albums, songs)
+        })
+      })
+  }
+
   deselectAlbum () {
     this.setState({ selectedAlbum: {}});
   }
@@ -124,13 +139,15 @@ export default class AppContainer extends Component {
               album: this.state.selectedAlbum,
               currentSong: this.state.currentSong,
               isPlaying: this.state.isPlaying,
-              toggle: this.toggleOne,
+              toggleOne: this.toggleOne,
               //Albums (plural) props
               albums: this.state.albums,
               selectAlbum: this.selectAlbum,
               //Artists (plural) props 
               artists: this.state.artists,
-              selectedArtist: this.state.selectedArtist
+              selectedArtist: this.state.selectedArtist,
+              //Artist (singular) props
+              selectArtist: this.selectArtist
               })
             : null 
         }

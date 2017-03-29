@@ -9,6 +9,14 @@ export const convertAlbum = (album) => {
   return album;
 };
 
+export const convertArtist = (artist, albums, songs) => {
+  console.log('SONGS', songs)
+  console.log('ALBUMS', albums)
+  artist.songs = songs.map(convertSong)
+  artist.albums = albums.map(convertAlbum)
+  return artist;
+}
+
 export const convertAlbums = (albums) =>
   albums.map(album => convertAlbum(album));
 
